@@ -1,0 +1,77 @@
+<div class="users" *ngIf="userDetails.length > 0">
+  <div *ngFor="let user of userDetails">
+    <nz-card nzHoverable style="width:200px;height: 50vh;" [nzCover]="coverTemplate" class="user-card">
+      <i nz-icon nzType="more" nzTheme="outline" class="more" nzTooltipTitle="More" nzTooltipPlacement="top" nz-button nz-tooltip
+      (click)="showModal(user)">
+      </i>
+       <h2>{{user.firstName | titlecase}} {{user.lastName | titlecase}}</h2>
+       <p>Admin</p>
+       <div class="user-contact">
+        <i nz-icon nzType="mail" nzTheme="outline"></i>
+        <p>{{user.email}}</p>
+       </div>
+       <div class="user-contact">
+        <i nz-icon nzType="phone" nzTheme="outline"></i>
+        <p>+1 9876543210</p>
+       </div>
+    </nz-card>
+    <ng-template #coverTemplate>
+      <img alt="example" src="https://os.alipayobjects.com/rmsportal/QBnOOoLaAfKPirc.png" class="user-img" />
+    </ng-template>
+  </div>
+</div>
+
+<div *ngIf="userDetails.length == 0">
+  <nz-empty
+      nzNotFoundImage="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
+      [nzNotFoundContent]="contentTpl">
+      <ng-template #contentTpl>
+         <a href="#API">No Data</a>
+      </ng-template>
+    </nz-empty>
+</div>
+<nz-modal
+    [(nzVisible)]="isVisible"
+    nzTitle="Do You Want to Update or Delete the User?"
+    (nzOnCancel)="handleCancel()"
+    [nzFooter]="null">
+    <p *nzModalContent class="btn-group">
+      <button nz-button nzType="primary" class="primary" (click)="open()">Update</button>
+      <button nz-button nzType="primary" nzDanger class="primary" (click)="deleteUser()">Delete</button>
+    </p>
+  </nz-modal>
+
+
+<nz-drawer
+[nzBodyStyle]="{ overflow: 'auto' }"
+[nzMaskClosable]="false"
+[nzWidth]="720"
+[nzVisible]="visible"
+nzTitle="Update User"
+(nzOnClose)="close()"
+>
+<form nz-form [formGroup]="userForm" class="login-form" (ngSubmit)="updateUser()">
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your First Name!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input placeholder="Please input your First Name!" formControlName="firstName"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your Last Name!">
+      <nz-input-group nzPrefixIcon="user">
+        <input type="text" nz-input placeholder="Please input your Last Name!" formControlName="lastName"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control nzErrorTip="Please input your EMail!">
+      <nz-input-group nzPrefixIcon="mail">
+        <input type="email" nz-input  placeholder="Enter Your Email" formControlName="email"/>
+      </nz-input-group>
+    </nz-form-control>
+  </nz-form-item>
+  <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'" >Update User</button>
+</form>
+</nz-drawer>
