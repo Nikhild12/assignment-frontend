@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~13.3.11",
     "@angular/router": "~13.3.11",
     "ng-zorro-antd": "^11.1.0",
+    "npm-check-updates": "^13.1.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "~0.11.4"
@@ -29,7 +30,7 @@
     "@angular/cli": "~13.3.7",
     "@angular/compiler-cli": "~13.3.11",
     "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
+    "@types/node": "^16.11.39",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
