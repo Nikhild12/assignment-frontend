@@ -1,0 +1,28 @@
+version: 0.0
+os: linux
+files:
+  - source: /
+    destination: /var/www/html/
+hooks:
+  BeforeInstall:
+    - location: scripts/remove_root_dir
+      timeout: 900
+      runas: root
+  ApplicationStart:
+    - location: scripts/install_dependencies
+      timeout: 300
+      runas: root
+    - location: scripts/start_server
+      timeout: 300
+      runas: root
+  # BeforeInstall:
+  #   - location: scripts/install_dependencies
+  #     timeout: 300
+  #     runas: root
+  #   - location: scripts/start_server
+  #     timeout: 300
+  #     runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
