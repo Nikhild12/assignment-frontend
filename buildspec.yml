@@ -21,7 +21,7 @@ phases:
     commands:
       # - echo testing...
       # - echo building...
-      - ng build --prod --aot
+      - ng build --prod
 artifacts:
   files:
     - "**/*"
