@@ -4,7 +4,7 @@ phases:
   install:
     commands:
       - echo installing nodejs...
-      - curl -sL https://deb.nodesource.com/setup_16.x -o /tmp/nodesource_setup.sh
+      - curl -sL https://deb.nodesource.com/setup_16.x | bash -
       - apt-get install -y nodejs
       - echo installing yarn...
       - curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
